@@ -1,0 +1,142 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<div class="component">
+  <div class="selector" aria-hidden="true" inert />
+
+  <button id="theme-toggle-light" aria-label="Light theme">
+    <Icon name="streamline:interface-lighting-brightness-4-bright-adjust-brightness-adjustment-sun-raise-controls-dot" width="24" height="24" />
+  </button>
+
+  <button id="theme-toggle-dark" aria-label="Dark theme">
+    <Icon name="streamline:interface-weather-moon-astronomy-moon-science-space-crescent" width="24" height="24" />
+  </button>
+
+  <button id="theme-toggle-system" aria-label="System theme">
+    <Icon name="streamline:interface-lighting-brightness-2-bright-adjust-brightness-adjustment-sun-raise-controls-half" width="24" height="24" />
+  </button>
+</div>
+
+<script>
+  const themeToggleLight = document.querySelector<HTMLButtonElement>('#theme-toggle-light')
+  const themeToggleDark = document.querySelector<HTMLButtonElement>('#theme-toggle-dark')
+  const themeToggleSystem = document.querySelector<HTMLButtonElement>('#theme-toggle-system')
+
+  type ColorScheme = '🌚' | '🌞' | null
+
+  function updateTheme(theme: ColorScheme) {
+    if (theme === null) {
+      document.documentElement.style.removeProperty(globalThis.colorSchemeCssVariable);
+
+      localStorage.removeItem(globalThis.colorSchemeKeyName);
+    } else {
+      document.documentElement.style.setProperty(globalThis.colorSchemeCssVariable, theme)
+
+      localStorage.setItem(globalThis.colorSchemeKeyName, theme)
+    }
+  }
+
+  function updateThemeTransition(theme: ColorScheme) {
+    if (document.startViewTransition === undefined) {
+      updateTheme(theme);
+
+      return;
+    }
+
+    document.startViewTransition(() => {
+      updateTheme(theme);
+    });
+  }
+
+  function toggleAriaPressed(currentButton: HTMLButtonElement | null) {
+    for (const button of [themeToggleLight, themeToggleDark, themeToggleSystem]) {
+      const isPressed = button === currentButton;
+      const newValue = isPressed ? 'true' : 'false';
+
+      button?.setAttribute('aria-pressed', newValue);
+    }
+  }
+
+  themeToggleLight?.addEventListener('click', () => {
+    updateThemeTransition('🌞');
+    toggleAriaPressed(themeToggleLight);
+  });
+
+  themeToggleDark?.addEventListener('click', () => {
+    updateThemeTransition('🌚');
+    toggleAriaPressed(themeToggleDark);
+  });
+
+  themeToggleSystem?.addEventListener('click', () => {
+    updateThemeTransition(null);
+    toggleAriaPressed(themeToggleSystem);
+  });
+
+  const savedTheme = localStorage.getItem(globalThis.colorSchemeKeyName)
+
+  // Restore saved theme on load
+  if (savedTheme === '🌞' && themeToggleLight !== null) {
+    themeToggleLight.setAttribute('aria-pressed', 'true');
+  } else if (savedTheme === '🌚' && themeToggleDark !== null) {
+    themeToggleDark.setAttribute('aria-pressed', 'true');
+  } else if (themeToggleSystem !== null) {
+    themeToggleSystem.setAttribute('aria-pressed', 'true');
+  }
+</script>
+
+<style>
+  .component {
+    --height: 48px;
+    --toggle-size: 32px;
+    --gap: 8px;
+
+    height: var(--height);
+    display: grid;
+    position: relative;
+    grid-auto-flow: column;
+    align-items: center;
+    padding: 0 var(--gap);
+    column-gap: var(--gap);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 8px 22px oklch(18.34% 0.01 276.41 / 0.08);
+    border-radius: var(--height);
+  }
+
+  .selector {
+    width: var(--toggle-size);
+    height: var(--toggle-size);
+    position: absolute;
+    left: var(--gap);
+    border-radius: 50%;
+    background-color: color-mix(in oklch, var(--color-accent) 20%, transparent);
+    border: 1px solid color-mix(in oklch, var(--color-accent) 40%, transparent);
+    transition: translate 0.1s ease-out;
+    translate: calc((var(--toggle-size) + var(--gap)) * 2) 0;
+
+    html[style*="--color-scheme: 🌞"] & {
+      translate: 0;
+    }
+    
+    html[style*="--color-scheme: 🌚"] & {
+      translate: calc(var(--toggle-size) + var(--gap)) 0;
+    }
+  }
+
+  button {
+    display: inline flex;
+    width: var(--toggle-size);
+    height: var(--toggle-size);
+    padding: var(--spacing-8);
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: none;
+    background: none;
+    cursor: pointer;
+    
+    &[aria-pressed="true"] {
+      cursor: default;
+    }
+  }
+</style>

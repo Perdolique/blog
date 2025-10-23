@@ -1,0 +1,25 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { getCollection } from 'astro:content'
+
+const blogPosts = await getCollection('blogPosts')
+const lastThreePosts = blogPosts.slice(-3).toReversed()
+---
+
+<Layout 
+	pageTitle="Perdblog"
+	metaDescription="A blog about stuff"
+>
+	<h2>Latest posts</h2>
+
+	<ul>
+		{lastThreePosts.map((post) => (
+			<li>
+				<a href={`/blog/${post.id}`}>
+					{post.data.title}
+				</a>
+			</li>
+		))}
+	</ul>
+
+</Layout>
