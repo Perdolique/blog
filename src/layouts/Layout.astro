@@ -1,0 +1,71 @@
+---
+import '@/styles/global.css'
+// TODO: Check this way https://docs.astro.build/en/reference/experimental-flags/fonts/
+import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import PageHeader from '@/components/PageHeader.astro';
+
+interface Props {
+  pageTitle: string;
+	metaDescription: string;
+}
+
+const { pageTitle, metaDescription } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="description" content={metaDescription} />
+
+		<link rel="icon" href="/perdolique.png" />
+		<link rel="preload" as="font" href={interWoff2} type="font/woff2" crossorigin="anonymous" />
+
+		<title>{pageTitle}</title>
+
+		<script is:inline>
+			globalThis.colorSchemeKeyName = 'preferred-color-scheme'
+			globalThis.colorSchemeCssVariable = '--color-scheme'
+		</script>
+
+		<script>
+			const savedTheme = localStorage.getItem(globalThis.colorSchemeKeyName)
+
+			// FIXME: This code can be shared, but Astro can't process imports in inline scripts :(
+			if (savedTheme === '🌞' || savedTheme === '🌚') {
+				document.documentElement.style.setProperty(globalThis.colorSchemeCssVariable, savedTheme)
+			} else {
+				document.documentElement.style.removeProperty(globalThis.colorSchemeCssVariable)
+				localStorage.removeItem(globalThis.colorSchemeKeyName);
+			}
+		</script>
+	</head>
+
+	<body>
+		<PageHeader />
+
+		<main>
+			<slot />
+		</main>
+	</body>
+</html>
+
+<style>
+	body {
+		@container style(--color-scheme: 🌚) {
+			color-scheme: dark;
+		}
+
+		@container style(--color-scheme: 🌞) {
+			color-scheme: light;
+		}
+	}
+	
+	main {
+		max-width: var(--max-width);
+		margin: 0 auto;
+		padding: var(--spacing-48) 0;
+	}
+</style>
