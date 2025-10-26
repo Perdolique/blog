@@ -1,5 +1,7 @@
 ---
 import Layout from '@/layouts/Layout.astro'
+import SocialButton from '@/components/SocialButton.astro'
+import LatestPost from '@/components/LatestPost.astro'
 import { getCollection } from 'astro:content'
 
 const blogPosts = await getCollection('blogPosts')
@@ -10,16 +12,39 @@ const lastThreePosts = blogPosts.slice(-3).toReversed()
 	pageTitle="Perdblog"
 	metaDescription="A blog about stuff"
 >
+	<div class="social-buttons">
+		<SocialButton type="github" />
+		<SocialButton type="linkedin" />
+		<SocialButton type="twitch" />
+		<SocialButton type="telegram" />
+	</div>
+
 	<h2>Latest posts</h2>
 
-	<ul>
+	<div class="latest-posts">
 		{lastThreePosts.map((post) => (
-			<li>
-				<a href={`/blog/${post.id}`}>
-					{post.data.title}
-				</a>
-			</li>
+			<LatestPost 
+				title={post.data.title} 
+				description={post.data.description} 
+				postId={post.id} 
+				date={post.data.date}
+			/>
 		))}
-	</ul>
-
+	</div>
 </Layout>
+
+<style>
+	.social-buttons {
+		display: flex;
+		gap: var(--spacing-8);
+	}
+
+	h2 {
+		margin-top: var(--spacing-32);
+	}
+
+	.latest-posts {
+		display: grid;
+		row-gap: var(--spacing-16);
+	}
+</style>

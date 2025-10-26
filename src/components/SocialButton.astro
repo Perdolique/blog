@@ -1,0 +1,116 @@
+---
+import { Icon } from 'astro-icon/components'
+
+type SocialType = 'github' | 'linkedin' | 'twitch' | 'telegram';
+
+interface Props {
+  type: SocialType;
+}
+
+const { type } = Astro.props
+
+function getSocialLink(type: SocialType) : string {
+  switch (type) {
+    case 'github': {
+      return 'https://github.com/Perdolique'
+    }
+
+    case 'linkedin': {
+      return 'https://linkedin.com/in/perdolique/'
+    }
+
+    case 'twitch': {
+      return 'https://twitch.tv/perdolique'
+    }
+
+    case 'telegram': {
+      return 'https://t.me/perdTV'
+    }
+  }
+}
+
+function getIconName(type: SocialType) : string {
+  switch (type) {
+    case 'github': {
+      return 'tabler:brand-github'
+    }
+
+    case 'linkedin': {
+      return 'tabler:brand-linkedin'
+    }
+
+    case 'twitch': {
+      return 'tabler:brand-twitch'
+    }
+
+    case 'telegram': {
+      return 'tabler:brand-telegram'
+    }
+  }
+}
+
+function getAriaLabel(type: SocialType) : string {
+  switch (type) {
+    case 'github': {
+      return 'Visit my GitHub profile'
+    }
+
+    case 'linkedin': {
+      return 'Visit my LinkedIn profile'
+    }
+
+    case 'twitch': {
+      return 'Visit my Twitch channel'
+    }
+
+    case 'telegram': {
+      return 'Visit my Telegram channel'
+    }
+  }
+}
+
+const linkUrl = getSocialLink(type)
+const iconName = getIconName(type)
+const ariaLabel = getAriaLabel(type)
+---
+
+<a 
+  href={linkUrl} 
+  target="_blank"
+  aria-label={ariaLabel}
+>
+  <Icon 
+    name={iconName} 
+    size={32}
+    aria-hidden="true"
+  />
+</a>
+
+<style>
+  a {
+    width: 56px;
+    height: 56px;
+    display: inline flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-16);
+    color: var(--color-text);
+    transition: 
+      background-color var(--transition-quick) var(--transition-easing), 
+      border-color var(--transition-quick) var(--transition-easing),
+      translate var(--transition-quick) var(--transition-easing);
+
+    &:hover {
+      background-color: var(--color-background-hover);
+      border-color: var(--color-border-hover);
+      translate: 0 -2px;
+    }
+
+    &:focus-visible {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+  }
+</style>

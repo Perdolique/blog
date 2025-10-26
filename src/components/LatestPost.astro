@@ -1,0 +1,97 @@
+---
+import { Icon } from 'astro-icon/components'
+
+interface Props {
+  title: string;
+  description: string;
+  postId: string;
+  date: Date;
+}
+
+const { title, description, postId, date } = Astro.props
+const url = `/blog/${postId}`
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+})
+
+const formattedDate = dateFormatter.format(date)
+---
+
+<a href={url}>
+  <article>
+    <h3>{title}</h3>
+    <p>{description}</p>
+
+    <footer>
+      <span>
+        {formattedDate}
+      </span>
+
+      <Icon 
+        name="tabler:arrow-right" 
+        size="24" 
+        aria-hidden="true"
+        class="arrow-icon"
+      />
+    </footer>
+  </article>
+</a>
+
+<style>
+  a {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-16);
+    padding: var(--spacing-24);
+    background-color: var(--color-background);
+    transition: 
+      background-color var(--transition-medium) var(--transition-easing),
+      border-color var(--transition-medium) var(--transition-easing);
+    
+    &:hover {
+      background-color: var(--color-background-hover);
+      border-color: var(--color-border-hover);
+    }
+    
+    &:focus-visible {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+  }
+
+  article {
+    display: grid;
+    row-gap: var(--spacing-8);
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: var(--spacing-24);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-14);
+  }
+
+  .arrow-icon {
+    transition: translate var(--transition-quick) var(--transition-easing);
+
+    a:hover &,
+    a:focus-visible & {
+      translate: 4px;
+    }
+  }
+</style>
