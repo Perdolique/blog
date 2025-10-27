@@ -1,0 +1,41 @@
+---
+import { Icon } from 'astro-icon/components'
+import Panel from './Panel.astro'
+---
+
+<Panel tag="section" class="panel">
+  <h2>About me</h2>
+
+  <div class="content">
+    <p>
+      Frontend enthusiast passionate about sleek UI, human-readable code, and modern web tech. Turning tea and TypeScript into elegant, reliable interfaces.
+    </p>
+
+    <p>
+      <Icon size="24" name="streamline-emojis:teacup-without-handle" />
+      <Icon size="24" name="skill-icons:typescript" />
+    </p>
+  </div>
+</Panel>
+
+<style>
+  .panel {
+    display: grid;
+    row-gap: var(--spacing-16);
+
+    @container (width > 600px) {
+      row-gap: var(--spacing-24);
+    }
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.5;
+  }
+</style>

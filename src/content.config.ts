@@ -9,7 +9,8 @@ const blogPosts = defineCollection({
 
   schema: z.object({
     title: z.string().min(5),
-    description: z.string().min(10)
+    description: z.string().min(10),
+    date: z.date()
   })
 })
 

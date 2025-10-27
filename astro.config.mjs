@@ -14,6 +14,8 @@ export default defineConfig({
     enabled: false
   },
 
+  scopedStyleStrategy: 'class',
+
   markdown: {
     shikiConfig: {
       themes: {

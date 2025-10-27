@@ -1,0 +1,28 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import LatestPost from './LatestPost.astro';
+
+interface Props {
+  posts: CollectionEntry<'blogPosts'>[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="latest-posts">
+  {posts.map((post) => (
+    <LatestPost
+      title={post.data.title}
+      description={post.data.description}
+      postId={post.id}
+      date={post.data.date}
+    />
+  ))}
+</div>
+
+<style>
+  .latest-posts {
+    display: grid;
+    row-gap: var(--spacing-16);
+  }
+</style>

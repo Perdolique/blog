@@ -16,8 +16,12 @@
 :root {
   /* Colors */
   --color-text: light-dark(oklch(22.93% 0.01 255.6), oklch(97.3% 0.01 268.55));
-  --color-border: light-dark(oklch(22.61% 0.02 264.02 / 0.08), oklch(95.38% 0.02 274.74 / 0.12));
+  --color-text-secondary: light-dark(oklch(22.93% 0.01 255.6 / 0.75), oklch(97.3% 0.01 268.55 / 0.75));
   --color-accent: light-dark(oklch(57.5% 0.23 264.35), oklch(73.76% 0.13 269.37));
+  --color-border: light-dark(oklch(22.61% 0.02 264.02 / 0.08), oklch(95.38% 0.02 274.74 / 0.12));
+  --color-border-hover: color-mix(in oklch, var(--color-accent) 20%, var(--color-border));
+  --color-background: light-dark(oklch(100% 0.01 272.68), oklch(22.32% 0.01 272.68));
+  --color-background-hover: color-mix(in oklch, var(--color-accent) 12%, var(--color-background));
 
   /* Layout */
   --max-width: min(860px, 92vw);
@@ -27,12 +31,25 @@
   --spacing-8: 0.5rem;
   --spacing-12: 0.75rem;
   --spacing-16: 1rem;
+  --spacing-24: 1.5rem;
   --spacing-32: 2rem;
   --spacing-48: 3rem;
+
+  /* Fonts */
+  --font-size-14: 0.875rem;
+  --font-size-16: 1rem;
+  --font-size-20: 1.25rem;
+  --font-size-24: 1.5rem;
 
   /* Borders */
 
   --border-radius-8: 8px;
+  --border-radius-16: 16px;
+
+  /* Transitions */
+  --transition-quick: 0.15s;
+  --transition-medium: 0.3s;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
 
   /* Misc */
   --outline: 2px solid color-mix(in oklch, var(--color-accent) 80%, transparent);
@@ -74,6 +91,12 @@ body {
   box-sizing: border-box;
   background-color: light-dark(oklch(97.64% 0 286.38), oklch(18.34% 0.01 276.41));
   color: var(--color-text);
+}
+
+h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(var(--font-size-20), 2vw + 1rem, var(--font-size-24));
 }
 
 button {

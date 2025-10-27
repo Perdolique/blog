@@ -1,25 +1,47 @@
 ---
 import Layout from '@/layouts/Layout.astro'
 import { getCollection } from 'astro:content'
+import LatestPosts from '@/components/LatestPosts.astro'
+import NoLatestPosts from '@/components/NoLatestPosts.astro'
+import SocialLinks from '@/components/SocialLinks.astro'
+import AboutMe from '@/components/AboutMe.astro'
 
 const blogPosts = await getCollection('blogPosts')
-const lastThreePosts = blogPosts.slice(-3).toReversed()
+
+const sortedPosts = blogPosts.toSorted(
+  (postA, postB) => postB.data.date.getTime() - postA.data.date.getTime()
+)
+
+const lastThreePosts = sortedPosts.slice(0, 3)
+const hasPosts = lastThreePosts.length > 0
 ---
 
-<Layout 
-	pageTitle="Perdblog"
-	metaDescription="A blog about stuff"
+<Layout
+  pageTitle="Perdolique 🐕💨"
+  metaDescription="Frontend enthusiast passionate about sleek UI, human-readable code, and modern web tech. Turning tea and TypeScript into elegant, reliable interfaces."
 >
-	<h2>Latest posts</h2>
+  <div class="container">
+    <AboutMe />
 
-	<ul>
-		{lastThreePosts.map((post) => (
-			<li>
-				<a href={`/blog/${post.id}`}>
-					{post.data.title}
-				</a>
-			</li>
-		))}
-	</ul>
+    <SocialLinks />
 
+    <div class="posts-section">
+      <h2>Latest posts</h2>
+
+      {hasPosts ? <LatestPosts posts={lastThreePosts} /> : <NoLatestPosts />}
+    </div>
+  </div>
 </Layout>
+
+<style>
+  .container {
+    display: grid;
+    row-gap: var(--spacing-32);
+    container-type: inline-size;
+  }
+
+  .posts-section {
+    display: grid;
+    row-gap: var(--spacing-16);
+  }
+</style>
