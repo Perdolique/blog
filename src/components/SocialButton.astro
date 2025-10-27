@@ -9,98 +9,74 @@ interface Props {
 
 const { type } = Astro.props
 
-function getSocialLink(type: SocialType) : string {
+function getButtonData(type: SocialType) {
   switch (type) {
     case 'github': {
-      return 'https://github.com/Perdolique'
+      return {
+        url: 'https://github.com/Perdolique',
+        label: 'Visit my GitHub profile',
+        iconName: 'logos:github-icon'
+      }
     }
 
     case 'linkedin': {
-      return 'https://linkedin.com/in/perdolique/'
+      return {
+        url: 'https://linkedin.com/in/perdolique/',
+        label: 'Visit my LinkedIn profile',
+        iconName: 'logos:linkedin-icon'
+      }
     }
 
     case 'twitch': {
-      return 'https://twitch.tv/perdolique'
+      return {
+        url: 'https://twitch.tv/perdTV',
+        label: 'Visit my Twitch channel',
+        iconName: 'logos:twitch'
+      }
     }
 
     case 'telegram': {
-      return 'https://t.me/perdTV'
+      return {
+        url: 'https://t.me/perdTV',
+        label: 'Visit my Telegram channel',
+        iconName: 'logos:telegram'
+      }
     }
   }
 }
 
-function getIconName(type: SocialType) : string {
-  switch (type) {
-    case 'github': {
-      return 'tabler:brand-github'
-    }
-
-    case 'linkedin': {
-      return 'tabler:brand-linkedin'
-    }
-
-    case 'twitch': {
-      return 'tabler:brand-twitch'
-    }
-
-    case 'telegram': {
-      return 'tabler:brand-telegram'
-    }
-  }
-}
-
-function getAriaLabel(type: SocialType) : string {
-  switch (type) {
-    case 'github': {
-      return 'Visit my GitHub profile'
-    }
-
-    case 'linkedin': {
-      return 'Visit my LinkedIn profile'
-    }
-
-    case 'twitch': {
-      return 'Visit my Twitch channel'
-    }
-
-    case 'telegram': {
-      return 'Visit my Telegram channel'
-    }
-  }
-}
-
-const linkUrl = getSocialLink(type)
-const iconName = getIconName(type)
-const ariaLabel = getAriaLabel(type)
+const data = getButtonData(type)
 ---
 
-<a 
-  href={linkUrl} 
+<a
+  href={data.url}
   target="_blank"
-  aria-label={ariaLabel}
+  aria-label={data.label}
+  rel="noopener"
 >
-  <Icon 
-    name={iconName} 
-    size={32}
+  <Icon
+    name={data.iconName}
     aria-hidden="true"
   />
 </a>
 
 <style>
   a {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    aspect-ratio: 1;
     display: inline flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--color-background);
-    border: 1px solid var(--color-border);
     border-radius: var(--border-radius-16);
     color: var(--color-text);
-    transition: 
-      background-color var(--transition-quick) var(--transition-easing), 
+    transition:
+      background-color var(--transition-quick) var(--transition-easing),
       border-color var(--transition-quick) var(--transition-easing),
       translate var(--transition-quick) var(--transition-easing);
+
+    @container (width > 600px) {
+      width: 56px;
+    }
 
     &:hover {
       background-color: var(--color-background-hover);
@@ -111,6 +87,22 @@ const ariaLabel = getAriaLabel(type)
     &:focus-visible {
       outline: var(--outline);
       outline-offset: var(--outline-offset);
+    }
+  }
+
+  [data-icon] {
+    width: 24px;
+    height: 24px;
+
+    @container style(--color-scheme: 🌚) {
+      &[data-icon="logos:github-icon"] {
+        filter: invert(1);
+      }
+    }
+
+    @container (width > 600px) {
+      width: 28px;
+      height: 28px;
     }
   }
 </style>

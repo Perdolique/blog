@@ -1,7 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components'
 
-interface Props {
+export interface Props {
   title: string;
   description: string;
   postId: string;
@@ -30,9 +30,9 @@ const formattedDate = dateFormatter.format(date)
         {formattedDate}
       </span>
 
-      <Icon 
-        name="tabler:arrow-right" 
-        size="24" 
+      <Icon
+        name="tabler:arrow-right"
+        size="24"
         aria-hidden="true"
         class="arrow-icon"
       />
@@ -49,15 +49,15 @@ const formattedDate = dateFormatter.format(date)
     border-radius: var(--border-radius-16);
     padding: var(--spacing-24);
     background-color: var(--color-background);
-    transition: 
+    transition:
       background-color var(--transition-medium) var(--transition-easing),
       border-color var(--transition-medium) var(--transition-easing);
-    
+
     &:hover {
       background-color: var(--color-background-hover);
       border-color: var(--color-border-hover);
     }
-    
+
     &:focus-visible {
       outline: var(--outline);
       outline-offset: var(--outline-offset);

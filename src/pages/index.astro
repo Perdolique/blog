@@ -1,50 +1,47 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import SocialButton from '@/components/SocialButton.astro'
-import LatestPost from '@/components/LatestPost.astro'
 import { getCollection } from 'astro:content'
+import LatestPosts from '@/components/LatestPosts.astro'
+import NoLatestPosts from '@/components/NoLatestPosts.astro'
+import SocialLinks from '@/components/SocialLinks.astro'
+import AboutMe from '@/components/AboutMe.astro'
 
 const blogPosts = await getCollection('blogPosts')
-const lastThreePosts = blogPosts.slice(-3).toReversed()
+
+const sortedPosts = blogPosts.toSorted(
+  (postA, postB) => postB.data.date.getTime() - postA.data.date.getTime()
+)
+
+const lastThreePosts = sortedPosts.slice(0, 3)
+const hasPosts = lastThreePosts.length > 0
 ---
 
-<Layout 
-	pageTitle="Perdblog"
-	metaDescription="A blog about stuff"
+<Layout
+  pageTitle="Perdolique 🐕💨"
+  metaDescription="Frontend enthusiast passionate about sleek UI, human-readable code, and modern web tech. Turning tea and TypeScript into elegant, reliable interfaces."
 >
-	<div class="social-buttons">
-		<SocialButton type="github" />
-		<SocialButton type="linkedin" />
-		<SocialButton type="twitch" />
-		<SocialButton type="telegram" />
-	</div>
+  <div class="container">
+    <AboutMe />
 
-	<h2>Latest posts</h2>
+    <SocialLinks />
 
-	<div class="latest-posts">
-		{lastThreePosts.map((post) => (
-			<LatestPost 
-				title={post.data.title} 
-				description={post.data.description} 
-				postId={post.id} 
-				date={post.data.date}
-			/>
-		))}
-	</div>
+    <div class="posts-section">
+      <h2>Latest posts</h2>
+
+      {hasPosts ? <LatestPosts posts={lastThreePosts} /> : <NoLatestPosts />}
+    </div>
+  </div>
 </Layout>
 
 <style>
-	.social-buttons {
-		display: flex;
-		gap: var(--spacing-8);
-	}
+  .container {
+    display: grid;
+    row-gap: var(--spacing-32);
+    container-type: inline-size;
+  }
 
-	h2 {
-		margin-top: var(--spacing-32);
-	}
-
-	.latest-posts {
-		display: grid;
-		row-gap: var(--spacing-16);
-	}
+  .posts-section {
+    display: grid;
+    row-gap: var(--spacing-16);
+  }
 </style>

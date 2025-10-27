@@ -38,6 +38,8 @@
   /* Fonts */
   --font-size-14: 0.875rem;
   --font-size-16: 1rem;
+  --font-size-20: 1.25rem;
+  --font-size-24: 1.5rem;
 
   /* Borders */
 
@@ -89,6 +91,12 @@ body {
   box-sizing: border-box;
   background-color: light-dark(oklch(97.64% 0 286.38), oklch(18.34% 0.01 276.41));
   color: var(--color-text);
+}
+
+h2 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(var(--font-size-20), 2vw + 1rem, var(--font-size-24));
 }
 
 button {
