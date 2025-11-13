@@ -1,46 +1,26 @@
-# Astro Starter Kit: Basics
+# Personal Blog 😎
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Yo bros! 👋🔥 This is a dope personal blog built with Astro and deployed on Cloudflare Workers 🚀💨 Perfect setup for writing fire content and sharing knowledge with the homies 📝✨
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Tech Stack 🛠️
 
-## 🚀 Project Structure
+- **[Astro](https://astro.build/)** 🌟 - Modern web framework that slaps
+- **[Cloudflare Workers](https://workers.cloudflare.com/)** ☁️ - Lightning-fast deployment platform
+- **[astro-icon](https://github.com/natemoo-re/astro-icon)** 🎨 - Icon system with multiple Iconify sets, looking fresh
+- **[@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/)** 📚 - MDX support for writing sick blog posts
+- **[@fontsource-variable/inter](https://fontsource.org/)** ✍️ - Inter variable font for clean typography
 
-Inside of your Astro project, you'll see the following folders and files:
+## Commands ⚡
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+All commands are run from the root of the project, just vibe with these 👇
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+| Command              | Action                                      |
+| :------------------- | :------------------------------------------ |
+| `pnpm install`       | Install dependencies 📦                     |
+| `pnpm dev`           | Start local dev server at `localhost:4321` 🏃|
+| `pnpm typecheck`     | Run Astro type checking ✅                  |
+| `pnpm build`         | Build production site to `./dist/` 🏗️       |
+| `pnpm preview`       | Preview build with Wrangler dev server 👀   |
+| `pnpm deploy`        | Deploy to Cloudflare Workers 🚀             |
+| `pnpm deploy:preview`| Upload Wrangler version for preview 🔍      |
+| `pnpm update:all`    | Update all dependencies to latest versions 📈|
