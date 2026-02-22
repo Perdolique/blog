@@ -22,11 +22,11 @@
     "@iconify-json/skill-icons": "1.2.3",
     "@iconify-json/streamline": "1.2.5",
     "@iconify-json/streamline-emojis": "1.2.4",
-    "@iconify-json/tabler": "1.2.26",
-    "astro": "5.16.16",
+    "@iconify-json/tabler": "1.2.27",
+    "astro": "5.17.3",
     "astro-icon": "1.1.5",
     "taze": "19.9.2",
     "typescript": "5.9.3",
-    "wrangler": "4.61.0"
+    "wrangler": "4.67.0"
   }
 }
