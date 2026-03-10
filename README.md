@@ -8,7 +8,6 @@ A personal blog built with Astro and deployed on Cloudflare Workers.
 - **[Cloudflare Workers](https://workers.cloudflare.com/)** - Deployment platform
 - **[astro-icon](https://github.com/natemoo-re/astro-icon)** - Icon system with Iconify support
 - **[@astrojs/mdx](https://docs.astro.build/en/guides/integrations-guide/mdx/)** - MDX integration
-- **[@fontsource-variable/inter](https://fontsource.org/)** - Inter variable font
 
 ## Commands
 

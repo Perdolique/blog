@@ -1,6 +1,3 @@
-/* Font faces for Inter font */
-@import url('@fontsource-variable/inter');
-
 /* Shiki dark theme */
 @media (prefers-color-scheme: dark) {
   .astro-code,
@@ -86,7 +83,7 @@ body {
 }
 
 body {
-  font-family: 'Inter Variable', sans-serif;
+  font-family: var(--font-inter);
   color-scheme: light dark;
   box-sizing: border-box;
   background-color: light-dark(oklch(97.64% 0 286.38), oklch(18.34% 0.01 276.41));
