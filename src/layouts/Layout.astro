@@ -1,7 +1,6 @@
 ---
+import { Font } from 'astro:assets';
 import '@/styles/global.css'
-// TODO: Check this way https://docs.astro.build/en/reference/experimental-flags/fonts/
-import interWoff2 from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
 import PageHeader from '@/components/PageHeader.astro';
 
 interface Props {
@@ -21,7 +20,7 @@ const { pageTitle, metaDescription } = Astro.props
     <meta name="description" content={metaDescription} />
 
     <link rel="icon" href="/perdolique.png" />
-    <link rel="preload" as="font" href={interWoff2} type="font/woff2" crossorigin="anonymous" />
+    <Font cssVariable="--font-inter" preload />
 
     <title>{pageTitle}</title>
 
