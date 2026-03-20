@@ -1,13 +1,18 @@
 version: 2
+
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: npm
+    directory: /
+
     schedule:
-      interval: cron
-      cronjob: "0 18 * * *"
+      interval: weekly
+      day: monday
+      time: "19:00"
       timezone: "Europe/Tallinn"
+
     groups:
       all-updates:
         applies-to: version-updates
+
         patterns:
           - "*"

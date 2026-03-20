@@ -5,6 +5,14 @@ import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
+  experimental: {
+    rustCompiler: true,
+
+    queuedRendering: {
+      enabled: true
+    }
+  },
+
   integrations: [
     mdx(),
     icon()
