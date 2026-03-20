@@ -22,10 +22,10 @@
     "@iconify-json/streamline": "1.2.5",
     "@iconify-json/streamline-emojis": "1.2.4",
     "@iconify-json/tabler": "1.2.31",
-    "astro": "6.0.6",
+    "astro": "6.0.7",
     "astro-icon": "1.1.5",
     "taze": "19.10.0",
     "typescript": "5.9.3",
-    "wrangler": "4.75.0"
+    "wrangler": "4.76.0"
   }
 }
