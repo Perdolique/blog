@@ -16,17 +16,17 @@
   },
   "devDependencies": {
     "@astrojs/check": "0.9.8",
-    "@astrojs/compiler-rs": "0.1.8",
-    "@astrojs/mdx": "5.0.3",
+    "@astrojs/compiler-rs": "0.1.10",
+    "@astrojs/mdx": "5.0.4",
     "@iconify-json/logos": "1.2.11",
     "@iconify-json/skill-icons": "1.2.4",
     "@iconify-json/streamline": "1.2.5",
     "@iconify-json/streamline-emojis": "1.2.4",
     "@iconify-json/tabler": "1.2.33",
-    "astro": "6.1.8",
+    "astro": "6.1.9",
     "astro-icon": "1.1.5",
     "taze": "19.11.0",
     "typescript": "6.0.3",
-    "wrangler": "4.84.0"
+    "wrangler": "4.85.0"
   }
 }
