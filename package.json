@@ -17,7 +17,7 @@
   "devDependencies": {
     "@astrojs/check": "0.9.9",
     "@astrojs/compiler-rs": "0.2.2",
-    "@astrojs/mdx": "6.0.3",
+    "@astrojs/mdx": "7.0.0",
     "@iconify-json/logos": "1.2.11",
     "@iconify-json/skill-icons": "1.2.4",
     "@iconify-json/streamline": "1.2.5",
@@ -27,6 +27,6 @@
     "astro-icon": "1.1.5",
     "taze": "19.14.1",
     "typescript": "6.0.3",
-    "wrangler": "4.100.0"
+    "wrangler": "4.103.0"
   }
 }
