@@ -1,18 +1,10 @@
 // @ts-check
-import { defineConfig, fontProviders } from 'astro/config'
+import { defineConfig, fontProviders, logHandlers } from 'astro/config'
 import mdx from '@astrojs/mdx'
 import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    rustCompiler: true,
-
-    queuedRendering: {
-      enabled: true
-    }
-  },
-
   integrations: [
     mdx(),
     icon()
@@ -38,5 +30,7 @@ export default defineConfig({
         dark: 'one-dark-pro'
       }
     }
-  }
+  },
+
+  logger: logHandlers.json()
 })
