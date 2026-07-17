@@ -2,7 +2,3 @@ allowBuilds:
   esbuild: false
   sharp: false
   workerd: false
-minimumReleaseAgeExclude:
-  - '@astrojs/mdx@7.0.0'
-  - '@astrojs/markdown-satteri@0.3.1'
-  - astro@7.0.0
