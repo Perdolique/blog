@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "private": true,
-  "packageManager": "pnpm@11.13.1",
+  "packageManager": "pnpm@11.15.1",
   "scripts": {
     "dev": "astro dev",
     "test:typecheck": "astro check",
@@ -22,11 +22,11 @@
     "@iconify-json/skill-icons": "1.2.4",
     "@iconify-json/streamline": "1.2.5",
     "@iconify-json/streamline-emojis": "1.2.4",
-    "@iconify-json/tabler": "1.2.35",
-    "astro": "7.1.0",
+    "@iconify-json/tabler": "1.2.37",
+    "astro": "7.1.2",
     "astro-icon": "1.1.5",
     "taze": "19.14.1",
     "typescript": "6.0.3",
-    "wrangler": "4.111.0"
+    "wrangler": "4.112.0"
   }
 }
