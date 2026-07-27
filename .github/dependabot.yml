@@ -10,6 +10,9 @@ updates:
       time: '19:00'
       timezone: 'Europe/Tallinn'
 
+    cooldown:
+      default-days: 1
+
     ignore:
       - dependency-name: typescript
         update-types:
