@@ -1,20 +1,24 @@
 ---
 import { Icon } from 'astro-icon/components'
+import type { Locale } from '@/i18n/config'
+import { ui } from '@/i18n/ui'
 
-type SocialType = 'github' | 'linkedin' | 'twitch' | 'telegram';
+type SocialType = 'github' | 'linkedin' | 'twitch' | 'telegram'
 
 interface Props {
-  type: SocialType;
+  type: SocialType
+  locale: Locale
 }
 
-const { type } = Astro.props
+const { type, locale } = Astro.props
+const translations = ui[locale]
 
 function getButtonData(type: SocialType) {
   switch (type) {
     case 'github': {
       return {
         url: 'https://github.com/Perdolique',
-        label: 'Visit my GitHub profile',
+        label: translations.githubLabel,
         iconName: 'logos:github-icon'
       }
     }
@@ -22,7 +26,7 @@ function getButtonData(type: SocialType) {
     case 'linkedin': {
       return {
         url: 'https://linkedin.com/in/perdolique/',
-        label: 'Visit my LinkedIn profile',
+        label: translations.linkedinLabel,
         iconName: 'logos:linkedin-icon'
       }
     }
@@ -30,7 +34,7 @@ function getButtonData(type: SocialType) {
     case 'twitch': {
       return {
         url: 'https://www.twitch.tv/perdolique',
-        label: 'Visit my Twitch channel',
+        label: translations.twitchLabel,
         iconName: 'logos:twitch'
       }
     }
@@ -38,7 +42,7 @@ function getButtonData(type: SocialType) {
     case 'telegram': {
       return {
         url: 'https://t.me/perdTV',
-        label: 'Visit my Telegram channel',
+        label: translations.telegramLabel,
         iconName: 'logos:telegram'
       }
     }

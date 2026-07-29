@@ -1,0 +1,63 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { getCollection } from 'astro:content'
+import AboutMe from '@/components/AboutMe.astro'
+import LatestPosts from '@/components/LatestPosts.astro'
+import NoLatestPosts from '@/components/NoLatestPosts.astro'
+import SocialLinks from '@/components/SocialLinks.astro'
+import { parseAndValidateBlogPosts } from '@/i18n/blog-posts'
+import { getCurrentLocale } from '@/i18n/config'
+import { ui } from '@/i18n/ui'
+import Layout from '@/layouts/Layout.astro'
+
+export const getStaticPaths = (() => [
+  { params: { lang: undefined } },
+  { params: { lang: 'ru' } }
+]) satisfies GetStaticPaths
+
+const locale = getCurrentLocale(Astro.currentLocale)
+const translations = ui[locale]
+const blogPosts = parseAndValidateBlogPosts(await getCollection('blogPosts'))
+const localizedPosts = blogPosts.filter((post) => post.locale === locale)
+const sortedPosts = localizedPosts.toSorted(
+  (postA, postB) => postB.entry.data.date.getTime() - postA.entry.data.date.getTime()
+)
+const latestPosts = sortedPosts.slice(0, 3)
+const hasPosts = latestPosts.length > 0
+---
+
+<Layout
+  pageTitle="Perdolique 🐕💨"
+  metaDescription={translations.homeMetaDescription}
+  locale={locale}
+  localizedPath=""
+>
+  <div class="container">
+    <AboutMe locale={locale} />
+
+    <SocialLinks locale={locale} />
+
+    <div class="posts-section">
+      <h2>{translations.latestPostsHeading}</h2>
+
+      {
+        hasPosts
+          ? <LatestPosts posts={latestPosts} locale={locale} />
+          : <NoLatestPosts locale={locale} />
+      }
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .container {
+    display: grid;
+    row-gap: var(--spacing-32);
+    container-type: inline-size;
+  }
+
+  .posts-section {
+    display: grid;
+    row-gap: var(--spacing-16);
+  }
+</style>

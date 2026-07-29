@@ -1,21 +1,24 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import LatestPost from './LatestPost.astro';
+import type { LocalizedBlogPost } from '@/i18n/blog-posts'
+import type { Locale } from '@/i18n/config'
+import LatestPost from './LatestPost.astro'
 
 interface Props {
-  posts: CollectionEntry<'blogPosts'>[];
+  posts: LocalizedBlogPost[]
+  locale: Locale
 }
 
-const { posts } = Astro.props;
+const { posts, locale } = Astro.props
 ---
 
 <div class="latest-posts">
   {posts.map((post) => (
     <LatestPost
-      title={post.data.title}
-      description={post.data.description}
-      postId={post.id}
-      date={post.data.date}
+      title={post.entry.data.title}
+      description={post.entry.data.description}
+      slug={post.slug}
+      date={post.entry.data.date}
+      locale={locale}
     />
   ))}
 </div>

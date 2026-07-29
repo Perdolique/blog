@@ -1,18 +1,25 @@
 ---
-import { Font } from 'astro:assets';
+import { Font } from 'astro:assets'
+import { getAbsoluteLocaleUrl } from 'astro:i18n'
 import '@/styles/global.css'
-import PageHeader from '@/components/PageHeader.astro';
+import PageHeader from '@/components/PageHeader.astro'
+import type { Locale } from '@/i18n/config'
 
 interface Props {
-  pageTitle: string;
-  metaDescription: string;
+  pageTitle: string
+  metaDescription: string
+  locale: Locale
+  localizedPath: string
 }
 
-const { pageTitle, metaDescription } = Astro.props
+const { pageTitle, metaDescription, locale, localizedPath } = Astro.props
+const canonicalUrl = getAbsoluteLocaleUrl(locale, localizedPath)
+const englishUrl = getAbsoluteLocaleUrl('en', localizedPath)
+const russianUrl = getAbsoluteLocaleUrl('ru', localizedPath)
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -20,6 +27,10 @@ const { pageTitle, metaDescription } = Astro.props
     <meta name="description" content={metaDescription} />
 
     <link rel="icon" href="/perdolique.png" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="ru" href={russianUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
     <Font cssVariable="--font-inter" preload />
 
     <title>{pageTitle}</title>
@@ -37,13 +48,13 @@ const { pageTitle, metaDescription } = Astro.props
         document.documentElement.style.setProperty(globalThis.colorSchemeCssVariable, savedTheme)
       } else {
         document.documentElement.style.removeProperty(globalThis.colorSchemeCssVariable)
-        localStorage.removeItem(globalThis.colorSchemeKeyName);
+        localStorage.removeItem(globalThis.colorSchemeKeyName)
       }
     </script>
   </head>
 
   <body>
-    <PageHeader />
+    <PageHeader locale={locale} localizedPath={localizedPath} />
 
     <main>
       <slot />

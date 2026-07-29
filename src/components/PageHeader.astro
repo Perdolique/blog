@@ -1,14 +1,29 @@
 ---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import type { Locale } from '@/i18n/config'
+import { ui } from '@/i18n/ui'
+import LanguageSwitcher from './LanguageSwitcher.astro'
 import ThemeToggle from './ThemeToggle.astro'
+
+interface Props {
+  locale: Locale
+  localizedPath: string
+}
+
+const { locale, localizedPath } = Astro.props
+const translations = ui[locale]
 ---
 
 <header>
   <div class="content">
-    <a href="/">
-      <img src="/perdolique.png" alt="Perdolique Logo" width="32" height="32" />
+    <a href={getRelativeLocaleUrl(locale, '')}>
+      <img src="/perdolique.png" alt={translations.logoAlt} width="32" height="32" />
     </a>
 
-    <ThemeToggle />
+    <div class="actions">
+      <LanguageSwitcher locale={locale} localizedPath={localizedPath} />
+      <ThemeToggle locale={locale} />
+    </div>
   </div>
 </header>
 
@@ -32,10 +47,16 @@ import ThemeToggle from './ThemeToggle.astro'
     justify-content: space-between;
   }
 
+  .actions {
+    display: flex;
+    align-items: center;
+    column-gap: var(--spacing-8);
+  }
+
   a {
     border-radius: var(--border-radius-8);
     line-height: 0;
-  
+
     &:focus-visible {
       outline: var(--outline);
       outline-offset: var(--outline-offset);
