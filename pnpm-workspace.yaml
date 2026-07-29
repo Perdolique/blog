@@ -2,7 +2,3 @@ allowBuilds:
   esbuild: false
   sharp: false
   workerd: false
-minimumReleaseAgeExclude:
-  - miniflare@4.20260721.0
-  - taze@19.16.0
-  - wrangler@4.113.0
