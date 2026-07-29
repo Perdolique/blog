@@ -13,13 +13,13 @@ A personal blog built with Astro and deployed on Cloudflare Workers.
 
 All commands are run from the root of the project:
 
-| Command               | Action                                      |
-| :-------------------- | :------------------------------------------ |
-| `pnpm install`        | Install dependencies                        |
-| `pnpm dev`            | Start local dev server at `localhost:4321`  |
-| `pnpm test:typecheck` | Run Astro type checking                     |
-| `pnpm build`          | Build production site to `./dist/`          |
-| `pnpm preview`        | Preview build with Wrangler dev server      |
-| `pnpm deploy`         | Deploy to Cloudflare Workers                |
-| `pnpm deploy:preview` | Upload Wrangler version for preview         |
-| `pnpm update:all`     | Update all dependencies to latest versions  |
+| Command                 | Action                                      |
+| :---------------------- | :------------------------------------------ |
+| `vp install`            | Install dependencies                        |
+| `vp run dev`            | Start local dev server at `localhost:4321`  |
+| `vp run test:typecheck` | Run Astro type checking                     |
+| `vp run build`          | Build production site to `./dist/`          |
+| `vp run preview`        | Preview build with Wrangler dev server      |
+| `vp run deploy`         | Deploy to Cloudflare Workers                |
+| `vp run deploy:preview` | Upload Worker version for preview           |
+| `vp run update:all`     | Update dependencies to latest versions      |

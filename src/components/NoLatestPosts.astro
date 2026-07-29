@@ -1,9 +1,17 @@
 ---
+import type { Locale } from '@/i18n/config'
+import { ui } from '@/i18n/ui'
 import Panel from './Panel.astro'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
 ---
 
 <Panel class="panel">
-  No posts yet, but they're coming soon! 🚀
+  {ui[locale].noLatestPosts}
 </Panel>
 
 <style>

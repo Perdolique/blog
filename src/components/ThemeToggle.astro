@@ -1,19 +1,28 @@
 ---
 import { Icon } from 'astro-icon/components'
+import type { Locale } from '@/i18n/config'
+import { ui } from '@/i18n/ui'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const translations = ui[locale]
 ---
 
 <div class="component">
   <div class="selector" aria-hidden="true" inert />
 
-  <button id="theme-toggle-light" aria-label="Light theme">
+  <button id="theme-toggle-light" aria-label={translations.lightThemeLabel}>
     <Icon name="streamline:interface-lighting-brightness-4-bright-adjust-brightness-adjustment-sun-raise-controls-dot" width="24" height="24" />
   </button>
 
-  <button id="theme-toggle-dark" aria-label="Dark theme">
+  <button id="theme-toggle-dark" aria-label={translations.darkThemeLabel}>
     <Icon name="streamline:interface-weather-moon-astronomy-moon-science-space-crescent" width="24" height="24" />
   </button>
 
-  <button id="theme-toggle-system" aria-label="System theme">
+  <button id="theme-toggle-system" aria-label={translations.systemThemeLabel}>
     <Icon name="streamline:interface-lighting-brightness-2-bright-adjust-brightness-adjustment-sun-raise-controls-half" width="24" height="24" />
   </button>
 </div>
@@ -27,9 +36,9 @@ import { Icon } from 'astro-icon/components'
 
   function updateTheme(theme: ColorScheme) {
     if (theme === null) {
-      document.documentElement.style.removeProperty(globalThis.colorSchemeCssVariable);
+      document.documentElement.style.removeProperty(globalThis.colorSchemeCssVariable)
 
-      localStorage.removeItem(globalThis.colorSchemeKeyName);
+      localStorage.removeItem(globalThis.colorSchemeKeyName)
     } else {
       document.documentElement.style.setProperty(globalThis.colorSchemeCssVariable, theme)
 
@@ -39,49 +48,49 @@ import { Icon } from 'astro-icon/components'
 
   function updateThemeTransition(theme: ColorScheme) {
     if (document.startViewTransition === undefined) {
-      updateTheme(theme);
+      updateTheme(theme)
 
-      return;
+      return
     }
 
     document.startViewTransition(() => {
       updateTheme(theme);
-    });
+    })
   }
 
   function toggleAriaPressed(currentButton: HTMLButtonElement | null) {
     for (const button of [themeToggleLight, themeToggleDark, themeToggleSystem]) {
-      const isPressed = button === currentButton;
-      const newValue = isPressed ? 'true' : 'false';
+      const isPressed = button === currentButton
+      const newValue = isPressed ? 'true' : 'false'
 
-      button?.setAttribute('aria-pressed', newValue);
+      button?.setAttribute('aria-pressed', newValue)
     }
   }
 
   themeToggleLight?.addEventListener('click', () => {
-    updateThemeTransition('🌞');
-    toggleAriaPressed(themeToggleLight);
-  });
+    updateThemeTransition('🌞')
+    toggleAriaPressed(themeToggleLight)
+  })
 
   themeToggleDark?.addEventListener('click', () => {
-    updateThemeTransition('🌚');
-    toggleAriaPressed(themeToggleDark);
-  });
+    updateThemeTransition('🌚')
+    toggleAriaPressed(themeToggleDark)
+  })
 
   themeToggleSystem?.addEventListener('click', () => {
-    updateThemeTransition(null);
-    toggleAriaPressed(themeToggleSystem);
-  });
+    updateThemeTransition(null)
+    toggleAriaPressed(themeToggleSystem)
+  })
 
   const savedTheme = localStorage.getItem(globalThis.colorSchemeKeyName)
 
   // Restore saved theme on load
   if (savedTheme === '🌞' && themeToggleLight !== null) {
-    themeToggleLight.setAttribute('aria-pressed', 'true');
+    themeToggleLight.setAttribute('aria-pressed', 'true')
   } else if (savedTheme === '🌚' && themeToggleDark !== null) {
-    themeToggleDark.setAttribute('aria-pressed', 'true');
+    themeToggleDark.setAttribute('aria-pressed', 'true')
   } else if (themeToggleSystem !== null) {
-    themeToggleSystem.setAttribute('aria-pressed', 'true');
+    themeToggleSystem.setAttribute('aria-pressed', 'true')
   }
 </script>
 

@@ -1,13 +1,26 @@
 // @ts-check
 import { defineConfig, fontProviders, logHandlers } from 'astro/config'
 import mdx from '@astrojs/mdx'
+import sitemap from '@astrojs/sitemap'
 import icon from 'astro-icon'
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://perd.dev',
+
+  i18n: {
+    locales: ['en', 'ru'],
+    defaultLocale: 'en',
+
+    routing: {
+      prefixDefaultLocale: false
+    }
+  },
+
   integrations: [
     mdx(),
-    icon()
+    icon(),
+    sitemap()
   ],
 
   devToolbar: {

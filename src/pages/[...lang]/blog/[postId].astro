@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from 'astro'
+import { getCollection, render } from 'astro:content'
+import { parseAndValidateBlogPosts } from '@/i18n/blog-posts'
+import { defaultLocale, getCurrentLocale } from '@/i18n/config'
+import Layout from '@/layouts/Layout.astro'
+
+export const getStaticPaths = (async () => {
+  const blogPosts = parseAndValidateBlogPosts(await getCollection('blogPosts'))
+
+  return blogPosts.map((post) => ({
+    params: {
+      lang: post.locale === defaultLocale ? undefined : post.locale,
+      postId: post.slug
+    },
+    props: {
+      blogPost: post.entry,
+      slug: post.slug
+    }
+  }))
+}) satisfies GetStaticPaths
+
+const locale = getCurrentLocale(Astro.currentLocale)
+const { blogPost, slug } = Astro.props
+const { Content } = await render(blogPost)
+---
+
+<Layout
+  pageTitle={blogPost.data.title}
+  metaDescription={blogPost.data.description}
+  locale={locale}
+  localizedPath={`blog/${slug}`}
+>
+  <h1>{blogPost.data.title}</h1>
+
+  <Content />
+</Layout>

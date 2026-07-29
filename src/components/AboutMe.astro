@@ -1,15 +1,22 @@
 ---
 import { Icon } from 'astro-icon/components'
+import type { Locale } from '@/i18n/config'
+import { ui } from '@/i18n/ui'
 import Panel from './Panel.astro'
+
+interface Props {
+  locale: Locale
+}
+
+const { locale } = Astro.props
+const translations = ui[locale]
 ---
 
 <Panel tag="section" class="panel">
-  <h2>About me</h2>
+  <h2>{translations.aboutHeading}</h2>
 
   <div class="content">
-    <p>
-      Frontend enthusiast passionate about sleek UI, human-readable code, and modern web tech. Turning tea and TypeScript into elegant, reliable interfaces.
-    </p>
+    <p>{translations.aboutDescription}</p>
 
     <p>
       <Icon size="24" name="streamline-emojis:teacup-without-handle" />

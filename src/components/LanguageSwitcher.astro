@@ -1,0 +1,66 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n'
+import { locales, type Locale } from '@/i18n/config'
+import { ui } from '@/i18n/ui'
+
+interface Props {
+  locale: Locale
+  localizedPath: string
+}
+
+const { locale, localizedPath } = Astro.props
+const translations = ui[locale]
+---
+
+<nav aria-label={translations.languageSwitcherLabel}>
+  {
+    locales.map((targetLocale) => (
+      <a
+        href={getRelativeLocaleUrl(targetLocale, localizedPath)}
+        hreflang={targetLocale}
+        lang={targetLocale}
+        aria-current={targetLocale === locale ? 'page' : undefined}
+      >
+        {targetLocale.toUpperCase()}
+      </a>
+    ))
+  }
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-4);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius-16);
+  }
+
+  a {
+    padding: var(--spacing-4) var(--spacing-8);
+    border-radius: var(--border-radius-8);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-14);
+    font-weight: 700;
+    line-height: 24px;
+    text-decoration: none;
+    transition:
+      color var(--transition-quick) var(--transition-easing),
+      background-color var(--transition-quick) var(--transition-easing);
+
+    &[aria-current='page'] {
+      color: var(--color-text);
+      background-color: color-mix(in oklch, var(--color-accent) 20%, transparent);
+    }
+
+    &:hover {
+      color: var(--color-text);
+      background-color: var(--color-background-hover);
+    }
+
+    &:focus-visible {
+      outline: var(--outline);
+      outline-offset: var(--outline-offset);
+    }
+  }
+</style>
