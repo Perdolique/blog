@@ -14,4 +14,4 @@ minimumReleaseAgeExclude:
   - '@astrojs/compiler-binding-win32-x64-msvc@0.3.2'
   - '@astrojs/compiler-binding@0.3.2'
   - '@astrojs/compiler-rs@0.3.2'
-  - astro@7.1.6
+  - astro@7.2.1
