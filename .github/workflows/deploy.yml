@@ -18,15 +18,15 @@ on:
 
 jobs:
   deploy:
-    uses: Perdolique/automations/.github/workflows/deploy.yml@v1.0.4
+    uses: Perdolique/automations/.github/workflows/deploy.yml@v3.3.0
     with:
       working-directory: '.'
       artifact-path: 'dist'
       artifact-name: 'blog-artifact'
       build-command: 'build'
-      typecheck-command: 'test:typecheck'
-      deploy-staging-command: 'deploy:preview'
-      deploy-production-command: 'deploy'
+      test-typecheck-command: 'test:typecheck'
+      deploy-to-staging-command: 'deploy:preview'
+      deploy-to-production-command: 'deploy'
     secrets:
       cloudflare-account-id: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
       cloudflare-api-token: ${{ secrets.CLOUDFLARE_API_TOKEN }}
