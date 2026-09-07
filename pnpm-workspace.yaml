@@ -2,16 +2,15 @@ allowBuilds:
   esbuild: false
   sharp: false
   workerd: false
+minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
-  - '@astrojs/compiler-binding-darwin-arm64@0.3.2'
-  - '@astrojs/compiler-binding-darwin-x64@0.3.2'
-  - '@astrojs/compiler-binding-linux-arm64-gnu@0.3.2'
-  - '@astrojs/compiler-binding-linux-arm64-musl@0.3.2'
-  - '@astrojs/compiler-binding-linux-x64-gnu@0.3.2'
-  - '@astrojs/compiler-binding-linux-x64-musl@0.3.2'
-  - '@astrojs/compiler-binding-wasm32-wasi@0.3.2'
-  - '@astrojs/compiler-binding-win32-arm64-msvc@0.3.2'
-  - '@astrojs/compiler-binding-win32-x64-msvc@0.3.2'
-  - '@astrojs/compiler-binding@0.3.2'
-  - '@astrojs/compiler-rs@0.3.2'
-  - astro@7.2.1
+  - '@cloudflare/workerd-darwin-64@1.20260907.1'
+  - '@cloudflare/workerd-darwin-arm64@1.20260907.1'
+  - '@cloudflare/workerd-linux-64@1.20260907.1'
+  - '@cloudflare/workerd-linux-arm64@1.20260907.1'
+  - '@cloudflare/workerd-windows-64@1.20260907.1'
+  - '@iconify-json/logos@1.2.14'
+  - miniflare@5.20260907.0-alpha
+  - workerd@1.20260907.1
+  - wrangler@4.129.1
+saveExact: true
