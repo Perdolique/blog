@@ -19,15 +19,15 @@
     "@astrojs/compiler-rs": "0.5.1",
     "@astrojs/mdx": "8.0.2",
     "@astrojs/sitemap": "3.7.4",
-    "@iconify-json/logos": "1.2.14",
+    "@iconify-json/logos": "1.2.15",
     "@iconify-json/skill-icons": "1.2.4",
     "@iconify-json/streamline": "1.2.5",
     "@iconify-json/streamline-emojis": "1.2.4",
-    "@iconify-json/tabler": "1.2.40",
+    "@iconify-json/tabler": "1.2.41",
     "astro": "7.3.5",
     "astro-icon": "1.2.0",
-    "taze": "21.1.0",
+    "taze": "21.3.0",
     "typescript": "6.0.3",
-    "wrangler": "4.142.0"
+    "wrangler": "4.147.0"
   }
 }
