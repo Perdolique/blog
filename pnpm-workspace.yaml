@@ -4,17 +4,13 @@ allowBuilds:
   workerd: false
 minimumReleaseAgeExcludePrune: true
 minimumReleaseAgeExclude:
-  - '@astrojs/check@0.9.11'
-  - '@cloudflare/workerd-darwin-64@1.20261019.1'
-  - '@cloudflare/workerd-darwin-arm64@1.20261019.1'
-  - '@cloudflare/workerd-linux-64@1.20261019.1'
-  - '@cloudflare/workerd-linux-arm64@1.20261019.1'
-  - '@cloudflare/workerd-windows-64@1.20261019.1'
   - '@cyberalien/svg-utils@1.2.21'
-  - astro@7.4.1
-  - miniflare@5.20261019.0-beta
-  - postcss@8.5.31
-  - undici@8.12.3
-  - workerd@1.20261019.1
-  - wrangler@4.151.2
+  - astro@7.4.11
+  - miniflare@5.20261110.1-beta
+  - wrangler@4.160.1
+  - '@astrojs/internal-helpers@0.13.2'
+  - '@astrojs/markdown-satteri@0.4.9'
+  - '@astrojs/mdx@8.1.5'
+  - '@astrojs/runtime@0.1.1'
+  - '@astrojs/vite-plugin-astro@0.1.2'
 saveExact: true
